@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 5px solid #ccc;
+      border-radius: 5px;
+    }
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 style="color: blue;">Pizza Order Form</h1>
+    <form id="pizzaForm">
+      <div>
+        <h3 style="color: blueviolet;">Select Pizza Size</h3>
+        <label>
+          <input type="radio" name="size" value="Small" required> Small
+        </label><br>
+        <label>
+          <input type="radio" name="size" value="Medium"> Medium
+        </label><br>
+        <label>
+          <input type="radio" name="size" value="Large"> Large
+        </label>
+      </div>
+
+      
+      <div>
+        <h3  style="color: blueviolet;">Select Toppings</h3>
+        <label>
+          <input type="checkbox" name="toppings" value="Cheese"> Cheese
+        </label><br>
+        <label>
+          <input type="checkbox" name="toppings" value="Pepperoni"> Pepperoni
+        </label><br>
+        <label>
+          <input type="checkbox" name="toppings" value="Mushrooms"> Mushrooms
+        </label><br>
+        <label>
+          <input type="checkbox" name="toppings" value="Olives"> Olives
+        </label><br>
+        <label>
+          <input type="checkbox" name="toppings" value="Bacon"> Bacon
+        </label><br>
+      </div>
+
+    
+      <button type="button" onclick="submitOrder()">Submit Order</button>
+    </form>
+
+ 
+    <h3  style="color: red;">Order Summary:</h3>
+    <div id="orderSummary"></div>
+  </div>
+
+  <script>
+    function submitOrder() {
+ 
+      const size = document.querySelector('input[name="size"]:checked');
+      if (!size) {
+        alert("Please select a pizza size.");
+        return;
+      }
+
+
+      const selectedToppings = [];
+      const toppings = document.querySelectorAll('input[name="toppings"]:checked');
+      toppings.forEach(topping => selectedToppings.push(topping.value));
+
+
+      let orderSummary = `<p><strong>Pizza Size:</strong> ${size.value}</p>`;
+
+      if (selectedToppings.length > 0) {
+        orderSummary += `<p><strong>Toppings:</strong> ${selectedToppings.join(", ")}</p>`;
+      } else {
+        orderSummary += `<p><strong>No toppings selected.</strong></p>`;
+      }
+
+      
+      document.getElementById("orderSummary").innerHTML = orderSummary;
+    }
+  </script>
+
+</body>
+</html>
