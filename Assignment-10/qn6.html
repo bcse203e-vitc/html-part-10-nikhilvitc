@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layered Image Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: auto;
+    }
+
+    .image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transition: z-index 0.3s ease; 
+    }
+
+    .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image1 {
+      z-index: 1;
+    }
+    .image2 {
+      z-index: 2;
+    }
+    .image3 {
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Layered Image Gallery</h1>
+  <p>Click on an image to bring it to the front.</p>
+
+  <div class="gallery-container">
+
+    <div class="image image1" onclick="bringToFront(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMcpfgCcTk2M7kOSjL4GZ2tDszVSdrJ7lndg&s" alt="Image 1">
+    </div>
+    <div class="image image2" onclick="bringToFront(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToS6kpudpq5rc7iFDORrZMW8BcaXhY2WYb9Q&s" alt="Image 2">
+    </div>
+    <div class="image image3" onclick="bringToFront(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfANFZuAFrCnTaLoQr9F44xG6-HAiLODA-Aw&s" alt="Image 3">
+    </div>
+  </div>
+
+  <script>
+
+    function bringToFront(element) {
+
+      const images = document.querySelectorAll('.image');
+      
+      images.forEach(img => img.style.zIndex = 1);
+      
+      element.style.zIndex = 10;
+    }
+  </script>
+
+</body>
+</html>
