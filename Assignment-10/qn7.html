@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textarea Controls</title>
+</head>
+<body>
+
+    <h1>Textarea Word and Character Counter</h1>
+    <textarea id="textArea" rows="6" cols="30" placeholder="Type something..."></textarea>
+    <div>
+        <p>Characters: <span id="charCount">0</span></p>
+        <p>Words: <span id="wordCount">0</span></p>
+    </div>
+
+    <script>
+        const textArea = document.getElementById('textArea');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+
+        textArea.addEventListener('input', function() {
+            let text = textArea.value;
+            let characters = text.length;
+            let words = text.split(/\s+/).filter(function(word) {
+                return word.length > 0;
+            }).length;
+
+            charCount.textContent = characters;
+            wordCount.textContent = words;
+
+            if (characters > 200) {
+                alert("Character limit exceeded! Please reduce the text.");
+            }
+        });
+    </script>
+
+</body>
+</html>
